@@ -1,0 +1,1077 @@
+{
+  "_parameterSet": {
+    "LCPKCSSZID": "5347a1b7-2340-4ee9-993e-422b443926e3",
+    "ISSGPK": true,
+    "BJSKJSKZ": 1,
+    "JSSKJSKZ": 2,
+    "GDJSKZ": 1,
+    "ISKCMC": true,
+    "ISKCBH": false,
+    "ISJXBLX": false,
+    "ISSKDD": true,
+    "ISSKZC": true,
+    "ISSKJC": true,
+    "ISRKJS": true,
+    "ISJXBMC": true,
+    "ISSKRS": true,
+    "ISJSZC": false,
+    "ISKHFS": false,
+    "ISXSFL": true,
+    "ISSDXSKB": true,
+    "BPKZCZY": null,
+    "BPKZCMS": null,
+    "BZ": null,
+    "BPKJCMS": null,
+    "ISXSCTBYXPK": true,
+    "ISSGPKYXTJSJP": true,
+    "ISSGPKBJCTP": true,
+    "ISSGPKJZGCTP": false,
+    "ISSGPKJSCTP": true,
+    "YXCXKBLX": "3,1",
+    "ID": "5347a1b7-2340-4ee9-993e-422b443926e3",
+    "ZZCLBlob": null,
+    "_LogCreate": null,
+    "_LogUpdate": null,
+    "_LogAudit": null
+  },
+  "isUnlockApply": false,
+  "isShowTimetableTimeSlot": true,
+  "AdjustDays": [
+    {
+      "WIndex": 1,
+      "FullTitle": "星期一",
+      "SimpleTitle": "一",
+      "EnglishTitle": "Monday",
+      "SimpleEnglish": "Mon.",
+      "MN__TimePieces": [],
+      "AM__TimePieces": [
+        {
+          "Dtos": [
+            {
+              "LessonOccupyID": "33e3c00e-217a-4608-9ea0-5104e9efdd5a",
+              "BeginLessonID": "e3db6ee2-4372-4d35-8a00-9497f33dbc9f",
+              "LessonObjName": "2523101-02[82人]",
+              "BZ": null,
+              "Classs": null,
+              "Content": [
+                {
+                  "ID": "40716d5a-6149-452b-afa5-bd1f59c65f95",
+                  "Name": "Java Web应用开发",
+                  "Key": "Lesson"
+                },
+                {
+                  "ID": "CE18008E-1079-4A45-88D6-07F92167805B",
+                  "Name": "郭璐瑶",
+                  "Key": "Teacher"
+                },
+                {
+                  "ID": "1D550981-52C6-486F-9EB7-CDCB296FAAE9",
+                  "Name": "1号楼西教503[理论]",
+                  "ZBDZ": null,
+                  "Key": "Room"
+                },
+                {
+                  "Name": "1-6,8-15周[1-2节]",
+                  "Key": "Time"
+                }
+              ],
+              "QueryType": 0,
+              "SimpleInfo": null,
+              "StationOnLine": null,
+              "OnLineAdress": null,
+              "OnLineInfo": null
+            }
+          ],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "08:30",
+          "EndTime": "10:05",
+          "Title": "第1-2节",
+          "PrintTitle": "第1-2节",
+          "Section": "0102",
+          "StartSection": 1,
+          "EndSection": 2,
+          "SectionList": null
+        },
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "10:15",
+          "EndTime": "11:50",
+          "Title": "第3-4节",
+          "PrintTitle": "第3-4节",
+          "Section": "0304",
+          "StartSection": 3,
+          "EndSection": 4,
+          "SectionList": null
+        }
+      ],
+      "AF__TimePieces": [],
+      "PM__TimePieces": [
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "12:40",
+          "EndTime": "14:15",
+          "Title": "第5-6节",
+          "PrintTitle": "第5-6节",
+          "Section": "0506",
+          "StartSection": 5,
+          "EndSection": 6,
+          "SectionList": null
+        },
+        {
+          "Dtos": [
+            {
+              "LessonOccupyID": "a6ee5dfa-dde1-4585-a27b-bd909216180d",
+              "BeginLessonID": "BFB985B7-A221-424A-932E-6B98316942B3",
+              "LessonObjName": "2523102[35人]",
+              "BZ": null,
+              "Classs": null,
+              "Content": [
+                {
+                  "ID": "d533b81a-2d43-4567-81f2-e0ec26854451",
+                  "Name": "人工智能基础与应用（理实一体）",
+                  "Key": "Lesson"
+                },
+                {
+                  "ID": "F65DAFAE-F54B-4688-88BC-9B6E063ADC76",
+                  "Name": "白烨",
+                  "Key": "Teacher"
+                },
+                {
+                  "ID": "69cad2f1-f075-479a-8e33-c46f650ad602",
+                  "Name": "7-205人工智能实验室[理论]",
+                  "ZBDZ": null,
+                  "Key": "Room"
+                },
+                {
+                  "Name": "1-6,8-17周[7-8节]",
+                  "Key": "Time"
+                }
+              ],
+              "QueryType": 0,
+              "SimpleInfo": null,
+              "StationOnLine": null,
+              "OnLineAdress": null,
+              "OnLineInfo": null
+            }
+          ],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "14:25",
+          "EndTime": "16:00",
+          "Title": "第7-8节",
+          "PrintTitle": "第7-8节",
+          "Section": "0708",
+          "StartSection": 7,
+          "EndSection": 8,
+          "SectionList": null
+        }
+      ],
+      "EV__TimePieces": [
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "16:40",
+          "EndTime": "18:10",
+          "Title": "第9-10节",
+          "PrintTitle": "第9-10节",
+          "Section": "0910",
+          "StartSection": 9,
+          "EndSection": 10,
+          "SectionList": null
+        },
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "18:20",
+          "EndTime": "19:50",
+          "Title": "第11-12节",
+          "PrintTitle": "第11-12节",
+          "Section": "1112",
+          "StartSection": 11,
+          "EndSection": 12,
+          "SectionList": null
+        }
+      ]
+    },
+    {
+      "WIndex": 2,
+      "FullTitle": "星期二",
+      "SimpleTitle": "二",
+      "EnglishTitle": "Tuesday",
+      "SimpleEnglish": "Tues.",
+      "MN__TimePieces": [],
+      "AM__TimePieces": [
+        {
+          "Dtos": [
+            {
+              "LessonOccupyID": "1b5cf6df-199b-47eb-ac1c-0b839f6931f3",
+              "BeginLessonID": "5755ca7c-838b-43df-8854-b8d78ee5584f",
+              "LessonObjName": "2523101-02[81人]",
+              "BZ": null,
+              "Classs": null,
+              "Content": [
+                {
+                  "ID": "52e7459c-d9bc-49d9-8d9c-eb700fc58611",
+                  "Name": "嵌入式系统开发",
+                  "Key": "Lesson"
+                },
+                {
+                  "ID": "311d5d16-8955-4213-b7ea-f048b350cf93",
+                  "Name": "王大禹",
+                  "Key": "Teacher"
+                },
+                {
+                  "ID": "2C351FCA-1AAF-4A16-8ED2-63560E0648F9",
+                  "Name": "1号楼西教205[理论]",
+                  "ZBDZ": null,
+                  "Key": "Room"
+                },
+                {
+                  "Name": "1-6,8-17周[1-2节]",
+                  "Key": "Time"
+                }
+              ],
+              "QueryType": 0,
+              "SimpleInfo": null,
+              "StationOnLine": null,
+              "OnLineAdress": null,
+              "OnLineInfo": null
+            }
+          ],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "08:30",
+          "EndTime": "10:05",
+          "Title": "第1-2节",
+          "PrintTitle": "第1-2节",
+          "Section": "0102",
+          "StartSection": 1,
+          "EndSection": 2,
+          "SectionList": null
+        },
+        {
+          "Dtos": [
+            {
+              "LessonOccupyID": "8989ae81-54a3-4177-9463-cdc306365a44",
+              "BeginLessonID": "0454536a-8e49-4525-b7a4-8254b180992d",
+              "LessonObjName": "2523101-02[81人]",
+              "BZ": null,
+              "Classs": null,
+              "Content": [
+                {
+                  "ID": "b7df6b2f-4526-4c45-9d3e-86cd50b51f25",
+                  "Name": "软件工程",
+                  "Key": "Lesson"
+                },
+                {
+                  "ID": "496fe3b1-d2d5-4a70-bd2f-609d0e759f1a",
+                  "Name": "张博",
+                  "Key": "Teacher"
+                },
+                {
+                  "ID": "C5319CB1-2CC1-4B40-98A2-6B9533EEB995",
+                  "Name": "1号楼西教203[理论]",
+                  "ZBDZ": null,
+                  "Key": "Room"
+                },
+                {
+                  "Name": "1-6,8-15周[3-4节]",
+                  "Key": "Time"
+                }
+              ],
+              "QueryType": 0,
+              "SimpleInfo": null,
+              "StationOnLine": null,
+              "OnLineAdress": null,
+              "OnLineInfo": null
+            }
+          ],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "10:15",
+          "EndTime": "11:50",
+          "Title": "第3-4节",
+          "PrintTitle": "第3-4节",
+          "Section": "0304",
+          "StartSection": 3,
+          "EndSection": 4,
+          "SectionList": null
+        }
+      ],
+      "AF__TimePieces": [],
+      "PM__TimePieces": [
+        {
+          "Dtos": [
+            {
+              "LessonOccupyID": "7fa493a8-773a-4ed5-bbb4-f3834b703c06",
+              "BeginLessonID": "e3db6ee2-4372-4d35-8a00-9497f33dbc9f",
+              "LessonObjName": "2523101-02[82人]",
+              "BZ": null,
+              "Classs": null,
+              "Content": [
+                {
+                  "ID": "40716d5a-6149-452b-afa5-bd1f59c65f95",
+                  "Name": "Java Web应用开发",
+                  "Key": "Lesson"
+                },
+                {
+                  "ID": "CE18008E-1079-4A45-88D6-07F92167805B",
+                  "Name": "郭璐瑶",
+                  "Key": "Teacher"
+                },
+                {
+                  "ID": "dd905f88-2831-4e10-90b8-9f2734e4fe41",
+                  "Name": "2-510智慧教室[理论]",
+                  "ZBDZ": null,
+                  "Key": "Room"
+                },
+                {
+                  "Name": "1-6,8-15周[5-6节]",
+                  "Key": "Time"
+                }
+              ],
+              "QueryType": 0,
+              "SimpleInfo": null,
+              "StationOnLine": null,
+              "OnLineAdress": null,
+              "OnLineInfo": null
+            }
+          ],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "12:40",
+          "EndTime": "14:15",
+          "Title": "第5-6节",
+          "PrintTitle": "第5-6节",
+          "Section": "0506",
+          "StartSection": 5,
+          "EndSection": 6,
+          "SectionList": null
+        },
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "14:25",
+          "EndTime": "16:00",
+          "Title": "第7-8节",
+          "PrintTitle": "第7-8节",
+          "Section": "0708",
+          "StartSection": 7,
+          "EndSection": 8,
+          "SectionList": null
+        }
+      ],
+      "EV__TimePieces": [
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "16:40",
+          "EndTime": "18:10",
+          "Title": "第9-10节",
+          "PrintTitle": "第9-10节",
+          "Section": "0910",
+          "StartSection": 9,
+          "EndSection": 10,
+          "SectionList": null
+        },
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "18:20",
+          "EndTime": "19:50",
+          "Title": "第11-12节",
+          "PrintTitle": "第11-12节",
+          "Section": "1112",
+          "StartSection": 11,
+          "EndSection": 12,
+          "SectionList": null
+        }
+      ]
+    },
+    {
+      "WIndex": 3,
+      "FullTitle": "星期三",
+      "SimpleTitle": "三",
+      "EnglishTitle": "Wednesday",
+      "SimpleEnglish": "Wed.",
+      "MN__TimePieces": [],
+      "AM__TimePieces": [
+        {
+          "Dtos": [
+            {
+              "LessonOccupyID": "26657b74-1511-4126-bc71-907762d0869d",
+              "BeginLessonID": "5755ca7c-838b-43df-8854-b8d78ee5584f",
+              "LessonObjName": "2523101-02[81人]",
+              "BZ": null,
+              "Classs": null,
+              "Content": [
+                {
+                  "ID": "52e7459c-d9bc-49d9-8d9c-eb700fc58611",
+                  "Name": "嵌入式系统开发",
+                  "Key": "Lesson"
+                },
+                {
+                  "ID": "311d5d16-8955-4213-b7ea-f048b350cf93",
+                  "Name": "王大禹",
+                  "Key": "Teacher"
+                },
+                {
+                  "ID": "2C351FCA-1AAF-4A16-8ED2-63560E0648F9",
+                  "Name": "1号楼西教205[理论]",
+                  "ZBDZ": null,
+                  "Key": "Room"
+                },
+                {
+                  "Name": "1-6,8-17周[1-2节][单周]",
+                  "Key": "Time"
+                }
+              ],
+              "QueryType": 0,
+              "SimpleInfo": null,
+              "StationOnLine": null,
+              "OnLineAdress": null,
+              "OnLineInfo": null
+            }
+          ],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "08:30",
+          "EndTime": "10:05",
+          "Title": "第1-2节",
+          "PrintTitle": "第1-2节",
+          "Section": "0102",
+          "StartSection": 1,
+          "EndSection": 2,
+          "SectionList": null
+        },
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "10:15",
+          "EndTime": "11:50",
+          "Title": "第3-4节",
+          "PrintTitle": "第3-4节",
+          "Section": "0304",
+          "StartSection": 3,
+          "EndSection": 4,
+          "SectionList": null
+        }
+      ],
+      "AF__TimePieces": [],
+      "PM__TimePieces": [
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "12:40",
+          "EndTime": "14:15",
+          "Title": "第5-6节",
+          "PrintTitle": "第5-6节",
+          "Section": "0506",
+          "StartSection": 5,
+          "EndSection": 6,
+          "SectionList": null
+        },
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "14:25",
+          "EndTime": "16:00",
+          "Title": "第7-8节",
+          "PrintTitle": "第7-8节",
+          "Section": "0708",
+          "StartSection": 7,
+          "EndSection": 8,
+          "SectionList": null
+        }
+      ],
+      "EV__TimePieces": [
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "16:40",
+          "EndTime": "18:10",
+          "Title": "第9-10节",
+          "PrintTitle": "第9-10节",
+          "Section": "0910",
+          "StartSection": 9,
+          "EndSection": 10,
+          "SectionList": null
+        },
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "18:20",
+          "EndTime": "19:50",
+          "Title": "第11-12节",
+          "PrintTitle": "第11-12节",
+          "Section": "1112",
+          "StartSection": 11,
+          "EndSection": 12,
+          "SectionList": null
+        }
+      ]
+    },
+    {
+      "WIndex": 4,
+      "FullTitle": "星期四",
+      "SimpleTitle": "四",
+      "EnglishTitle": "Thursday",
+      "SimpleEnglish": "Thur.",
+      "MN__TimePieces": [],
+      "AM__TimePieces": [
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "08:30",
+          "EndTime": "10:05",
+          "Title": "第1-2节",
+          "PrintTitle": "第1-2节",
+          "Section": "0102",
+          "StartSection": 1,
+          "EndSection": 2,
+          "SectionList": null
+        },
+        {
+          "Dtos": [
+            {
+              "LessonOccupyID": "c8588dba-0032-45e5-bb95-b67b3d3eb2eb",
+              "BeginLessonID": "0454536a-8e49-4525-b7a4-8254b180992d",
+              "LessonObjName": "2523101-02[81人]",
+              "BZ": null,
+              "Classs": null,
+              "Content": [
+                {
+                  "ID": "b7df6b2f-4526-4c45-9d3e-86cd50b51f25",
+                  "Name": "软件工程",
+                  "Key": "Lesson"
+                },
+                {
+                  "ID": "496fe3b1-d2d5-4a70-bd2f-609d0e759f1a",
+                  "Name": "张博",
+                  "Key": "Teacher"
+                },
+                {
+                  "ID": "4F3482CA-CFD5-4B50-8BF4-ECA1024443D6",
+                  "Name": "1号楼西教201[理论]",
+                  "ZBDZ": null,
+                  "Key": "Room"
+                },
+                {
+                  "Name": "1-5,7-15周[3-4节]",
+                  "Key": "Time"
+                }
+              ],
+              "QueryType": 0,
+              "SimpleInfo": null,
+              "StationOnLine": null,
+              "OnLineAdress": null,
+              "OnLineInfo": null
+            }
+          ],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "10:15",
+          "EndTime": "11:50",
+          "Title": "第3-4节",
+          "PrintTitle": "第3-4节",
+          "Section": "0304",
+          "StartSection": 3,
+          "EndSection": 4,
+          "SectionList": null
+        }
+      ],
+      "AF__TimePieces": [],
+      "PM__TimePieces": [
+        {
+          "Dtos": [
+            {
+              "LessonOccupyID": "234ba3b9-4cf8-4e52-8914-6d141bdd889d",
+              "BeginLessonID": "9ed8098e-5142-4723-887c-47cf08b6c5b3",
+              "LessonObjName": "2523101-02[81人]",
+              "BZ": null,
+              "Classs": null,
+              "Content": [
+                {
+                  "ID": "b9f5e0c7-f4e9-442b-a998-96c9a029040f",
+                  "Name": "Python程序设计",
+                  "Key": "Lesson"
+                },
+                {
+                  "ID": "6F823D7D-716D-463B-BDCF-9CE7EF0EB15B",
+                  "Name": "胡丽娜",
+                  "Key": "Teacher"
+                },
+                {
+                  "ID": "DDFC2D16-4A0D-448B-9A33-4E889328512B",
+                  "Name": "1号楼西教601[理论]",
+                  "ZBDZ": null,
+                  "Key": "Room"
+                },
+                {
+                  "Name": "1-5,7-15周[5-6节]",
+                  "Key": "Time"
+                }
+              ],
+              "QueryType": 0,
+              "SimpleInfo": null,
+              "StationOnLine": null,
+              "OnLineAdress": null,
+              "OnLineInfo": null
+            }
+          ],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "12:40",
+          "EndTime": "14:15",
+          "Title": "第5-6节",
+          "PrintTitle": "第5-6节",
+          "Section": "0506",
+          "StartSection": 5,
+          "EndSection": 6,
+          "SectionList": null
+        },
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "14:25",
+          "EndTime": "16:00",
+          "Title": "第7-8节",
+          "PrintTitle": "第7-8节",
+          "Section": "0708",
+          "StartSection": 7,
+          "EndSection": 8,
+          "SectionList": null
+        }
+      ],
+      "EV__TimePieces": [
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "16:40",
+          "EndTime": "18:10",
+          "Title": "第9-10节",
+          "PrintTitle": "第9-10节",
+          "Section": "0910",
+          "StartSection": 9,
+          "EndSection": 10,
+          "SectionList": null
+        },
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "18:20",
+          "EndTime": "19:50",
+          "Title": "第11-12节",
+          "PrintTitle": "第11-12节",
+          "Section": "1112",
+          "StartSection": 11,
+          "EndSection": 12,
+          "SectionList": null
+        }
+      ]
+    },
+    {
+      "WIndex": 5,
+      "FullTitle": "星期五",
+      "SimpleTitle": "五",
+      "EnglishTitle": "Friday",
+      "SimpleEnglish": "Fri.",
+      "MN__TimePieces": [],
+      "AM__TimePieces": [
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "08:30",
+          "EndTime": "10:05",
+          "Title": "第1-2节",
+          "PrintTitle": "第1-2节",
+          "Section": "0102",
+          "StartSection": 1,
+          "EndSection": 2,
+          "SectionList": null
+        },
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "10:15",
+          "EndTime": "11:50",
+          "Title": "第3-4节",
+          "PrintTitle": "第3-4节",
+          "Section": "0304",
+          "StartSection": 3,
+          "EndSection": 4,
+          "SectionList": null
+        }
+      ],
+      "AF__TimePieces": [],
+      "PM__TimePieces": [
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "12:40",
+          "EndTime": "14:15",
+          "Title": "第5-6节",
+          "PrintTitle": "第5-6节",
+          "Section": "0506",
+          "StartSection": 5,
+          "EndSection": 6,
+          "SectionList": null
+        },
+        {
+          "Dtos": [
+            {
+              "LessonOccupyID": "bd143bef-9d99-4148-aa28-ac6c59bfc592",
+              "BeginLessonID": "9ed8098e-5142-4723-887c-47cf08b6c5b3",
+              "LessonObjName": "2523101-02[81人]",
+              "BZ": null,
+              "Classs": null,
+              "Content": [
+                {
+                  "ID": "b9f5e0c7-f4e9-442b-a998-96c9a029040f",
+                  "Name": "Python程序设计",
+                  "Key": "Lesson"
+                },
+                {
+                  "ID": "6F823D7D-716D-463B-BDCF-9CE7EF0EB15B",
+                  "Name": "胡丽娜",
+                  "Key": "Teacher"
+                },
+                {
+                  "ID": "59759967-CA12-411D-B3EB-065C8A74B708",
+                  "Name": "1号楼西教505[理论]",
+                  "ZBDZ": null,
+                  "Key": "Room"
+                },
+                {
+                  "Name": "1-5,7-15周[7-8节]",
+                  "Key": "Time"
+                }
+              ],
+              "QueryType": 0,
+              "SimpleInfo": null,
+              "StationOnLine": null,
+              "OnLineAdress": null,
+              "OnLineInfo": null
+            }
+          ],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "14:25",
+          "EndTime": "16:00",
+          "Title": "第7-8节",
+          "PrintTitle": "第7-8节",
+          "Section": "0708",
+          "StartSection": 7,
+          "EndSection": 8,
+          "SectionList": null
+        }
+      ],
+      "EV__TimePieces": [
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "16:40",
+          "EndTime": "18:10",
+          "Title": "第9-10节",
+          "PrintTitle": "第9-10节",
+          "Section": "0910",
+          "StartSection": 9,
+          "EndSection": 10,
+          "SectionList": null
+        },
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "18:20",
+          "EndTime": "19:50",
+          "Title": "第11-12节",
+          "PrintTitle": "第11-12节",
+          "Section": "1112",
+          "StartSection": 11,
+          "EndSection": 12,
+          "SectionList": null
+        }
+      ]
+    },
+    {
+      "WIndex": 6,
+      "FullTitle": "星期六",
+      "SimpleTitle": "六",
+      "EnglishTitle": "Saturday",
+      "SimpleEnglish": "Sat.",
+      "MN__TimePieces": [],
+      "AM__TimePieces": [
+        {
+          "Dtos": [
+            {
+              "LessonOccupyID": "42986a2a-fbbc-4550-a6cd-d78307f751a1",
+              "BeginLessonID": "eaf36194-d8db-41d4-b4f9-867174165c87",
+              "LessonObjName": "2523101-02[81人]",
+              "BZ": null,
+              "Classs": null,
+              "Content": [
+                {
+                  "ID": "a5832a95-ef89-4154-94f4-4fa08719555c",
+                  "Name": "计算机系统结构",
+                  "Key": "Lesson"
+                },
+                {
+                  "ID": "83928388-f11d-4db5-9cd5-f8e954f6e935",
+                  "Name": "付帅",
+                  "Key": "Teacher"
+                },
+                {
+                  "ID": "CAB2EDAD-7439-4510-B88A-ADF8E162ED94",
+                  "Name": "1号楼西教305[理论]",
+                  "ZBDZ": null,
+                  "Key": "Room"
+                },
+                {
+                  "Name": "1-5,7-15周[1-2节]",
+                  "Key": "Time"
+                }
+              ],
+              "QueryType": 0,
+              "SimpleInfo": null,
+              "StationOnLine": null,
+              "OnLineAdress": null,
+              "OnLineInfo": null
+            }
+          ],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "08:30",
+          "EndTime": "10:05",
+          "Title": "第1-2节",
+          "PrintTitle": "第1-2节",
+          "Section": "0102",
+          "StartSection": 1,
+          "EndSection": 2,
+          "SectionList": null
+        },
+        {
+          "Dtos": [
+            {
+              "LessonOccupyID": "24d5ea06-eac2-4799-92d7-56bbbbd3950a",
+              "BeginLessonID": "eaf36194-d8db-41d4-b4f9-867174165c87",
+              "LessonObjName": "2523101-02[81人]",
+              "BZ": null,
+              "Classs": null,
+              "Content": [
+                {
+                  "ID": "a5832a95-ef89-4154-94f4-4fa08719555c",
+                  "Name": "计算机系统结构",
+                  "Key": "Lesson"
+                },
+                {
+                  "ID": "83928388-f11d-4db5-9cd5-f8e954f6e935",
+                  "Name": "付帅",
+                  "Key": "Teacher"
+                },
+                {
+                  "ID": "CAB2EDAD-7439-4510-B88A-ADF8E162ED94",
+                  "Name": "1号楼西教305[理论]",
+                  "ZBDZ": null,
+                  "Key": "Room"
+                },
+                {
+                  "Name": "1-5,7-15周[3-4节]",
+                  "Key": "Time"
+                }
+              ],
+              "QueryType": 0,
+              "SimpleInfo": null,
+              "StationOnLine": null,
+              "OnLineAdress": null,
+              "OnLineInfo": null
+            }
+          ],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "10:15",
+          "EndTime": "11:50",
+          "Title": "第3-4节",
+          "PrintTitle": "第3-4节",
+          "Section": "0304",
+          "StartSection": 3,
+          "EndSection": 4,
+          "SectionList": null
+        }
+      ],
+      "AF__TimePieces": [],
+      "PM__TimePieces": [
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "12:40",
+          "EndTime": "14:15",
+          "Title": "第5-6节",
+          "PrintTitle": "第5-6节",
+          "Section": "0506",
+          "StartSection": 5,
+          "EndSection": 6,
+          "SectionList": null
+        },
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "14:25",
+          "EndTime": "16:00",
+          "Title": "第7-8节",
+          "PrintTitle": "第7-8节",
+          "Section": "0708",
+          "StartSection": 7,
+          "EndSection": 8,
+          "SectionList": null
+        }
+      ],
+      "EV__TimePieces": [
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "16:40",
+          "EndTime": "18:10",
+          "Title": "第9-10节",
+          "PrintTitle": "第9-10节",
+          "Section": "0910",
+          "StartSection": 9,
+          "EndSection": 10,
+          "SectionList": null
+        },
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "18:20",
+          "EndTime": "19:50",
+          "Title": "第11-12节",
+          "PrintTitle": "第11-12节",
+          "Section": "1112",
+          "StartSection": 11,
+          "EndSection": 12,
+          "SectionList": null
+        }
+      ]
+    },
+    {
+      "WIndex": 7,
+      "FullTitle": "星期日",
+      "SimpleTitle": "日",
+      "EnglishTitle": "Sunday",
+      "SimpleEnglish": "Sun.",
+      "MN__TimePieces": [],
+      "AM__TimePieces": [
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "08:30",
+          "EndTime": "10:05",
+          "Title": "第1-2节",
+          "PrintTitle": "第1-2节",
+          "Section": "0102",
+          "StartSection": 1,
+          "EndSection": 2,
+          "SectionList": null
+        },
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "10:15",
+          "EndTime": "11:50",
+          "Title": "第3-4节",
+          "PrintTitle": "第3-4节",
+          "Section": "0304",
+          "StartSection": 3,
+          "EndSection": 4,
+          "SectionList": null
+        }
+      ],
+      "AF__TimePieces": [],
+      "PM__TimePieces": [
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "12:40",
+          "EndTime": "14:15",
+          "Title": "第5-6节",
+          "PrintTitle": "第5-6节",
+          "Section": "0506",
+          "StartSection": 5,
+          "EndSection": 6,
+          "SectionList": null
+        },
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "14:25",
+          "EndTime": "16:00",
+          "Title": "第7-8节",
+          "PrintTitle": "第7-8节",
+          "Section": "0708",
+          "StartSection": 7,
+          "EndSection": 8,
+          "SectionList": null
+        }
+      ],
+      "EV__TimePieces": [
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "16:40",
+          "EndTime": "18:10",
+          "Title": "第9-10节",
+          "PrintTitle": "第9-10节",
+          "Section": "0910",
+          "StartSection": 9,
+          "EndSection": 10,
+          "SectionList": null
+        },
+        {
+          "Dtos": [],
+          "IsTimeConflit": false,
+          "XQJC": null,
+          "StartTime": "18:20",
+          "EndTime": "19:50",
+          "Title": "第11-12节",
+          "PrintTitle": "第11-12节",
+          "Section": "1112",
+          "StartSection": 11,
+          "EndSection": 12,
+          "SectionList": null
+        }
+      ]
+    }
+  ]
+}
