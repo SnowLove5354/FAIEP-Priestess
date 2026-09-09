@@ -6,6 +6,12 @@
 可手动运行，也可配合外部 cron-job 每隔10分钟自动运行
 
 所有配置均通过环境变量传入，详见 README.md
+
+通知规则：
+1. 首次运行成功（初始化基线）-> 发送启动成功通知
+2. 课表发生变化 -> 发送课表变更通知
+3. 运行发生故障/报错 -> 发送包含错误日志的报警通知
+4. 课表无变化 -> 静默不发送消息
 """
 
 import requests
@@ -16,6 +22,8 @@ import hashlib
 import os
 import sys
 import logging
+import traceback
+import io
 from datetime import datetime
 
 # ==================== 配置区域（全部从环境变量读取）====================
@@ -51,11 +59,33 @@ LAST_HASH_FILE = os.environ.get(
 LOG_LEVEL = os.environ.get("LOG_LEVEL", "INFO")
 
 # 日志配置
+class StringLogHandler(logging.Handler):
+    """用于收集日志到内存字符串的处理器"""
+    def __init__(self):
+        super().__init__()
+        self.log_stream = io.StringIO()
+        
+    def emit(self, record):
+        msg = self.format(record)
+        self.log_stream.write(msg + '\n')
+    
+    def get_logs(self):
+        return self.log_stream.getvalue()
+    
+    def clear(self):
+        self.log_stream.truncate(0)
+        self.log_stream.seek(0)
+
+# 创建内存日志处理器用于故障时发送日志
+memory_log_handler = StringLogHandler()
+memory_log_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
+
 logging.basicConfig(
     level=getattr(logging, LOG_LEVEL.upper(), logging.INFO),
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.StreamHandler(sys.stdout)
+        logging.StreamHandler(sys.stdout),
+        memory_log_handler
     ]
 )
 logger = logging.getLogger(__name__)
@@ -299,6 +329,46 @@ class ScheduleMonitor:
             logger.error(f"发送钉钉消息异常: {str(e)}")
             return False
 
+    def send_first_run_success(self, schedule_text):
+        """首次运行成功，发送启动通知"""
+        notify_msg = f"""✅【课表监控启动成功】
+⏰ 启动时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+👤 账号: {USERNAME[:3]}***
+
+📋 已获取当前课表作为监控基线:
+{schedule_text}
+
+🔔 后续课表如有变化将立即通知您。"""
+        self.send_dingtalk_notification(notify_msg)
+
+    def send_error_notification(self, error_msg, error_traceback=""):
+        """发送故障报警通知，包含错误日志"""
+        # 获取最近的日志
+        recent_logs = memory_log_handler.get_logs()[-2000:]  # 限制长度避免钉钉消息过长
+        
+        notify_msg = f"""❌【课表监控运行故障】
+⏰ 故障时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+
+🚨 错误信息:
+{error_msg}
+
+📝 最近运行日志:
+```
+{recent_logs}
+```"""
+        if error_traceback:
+            notify_msg += f"""
+🔍 错误堆栈:
+```
+{error_traceback[-1500:]}
+```"""
+        
+        # 尝试发送，即使失败也不抛出异常
+        try:
+            self.send_dingtalk_notification(notify_msg)
+        except:
+            pass
+
     def load_last_state(self):
         """加载上次保存的课表状态"""
         try:
@@ -355,11 +425,16 @@ class ScheduleMonitor:
 
         # 5. 对比是否有变化
         if last_hash is None:
-            # 首次运行，只保存状态不发消息
+            # 首次运行，保存状态并发送启动成功通知
             logger.info("首次运行，已初始化课表基线")
             schedule_text, _ = self.parse_schedule(schedule_data)
             logger.info(f"当前课表:\n{schedule_text}")
             self.save_current_state(current_hash, schedule_data)
+            
+            # 发送首次运行成功通知
+            logger.info("发送首次运行成功通知")
+            self.send_first_run_success(schedule_text)
+            
             return True, True  # 首次也算"有变化"（新基线），方便外部持久化
 
         if current_hash == last_hash:
@@ -396,6 +471,9 @@ def main():
     print(f"运行时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print()
 
+    # 清空日志缓存
+    memory_log_handler.clear()
+
     # 支持命令行参数
     if len(sys.argv) > 1:
         if sys.argv[1] == '--test':
@@ -425,33 +503,78 @@ def main():
         if sys.argv[1] == '--now':
             # 立即执行一次（忽略历史基线，强制触发一次完整检查）
             if not check_required_env():
+                # 发送环境变量缺失错误通知
+                try:
+                    monitor = ScheduleMonitor()
+                    monitor.send_error_notification("环境变量配置缺失，请检查必填参数是否正确设置")
+                except:
+                    pass
                 sys.exit(1)
-            # 清空历史基线
-            if os.path.exists(LAST_HASH_FILE):
-                os.remove(LAST_HASH_FILE)
-            if os.path.exists(LAST_SCHEDULE_FILE):
-                os.remove(LAST_SCHEDULE_FILE)
-            monitor = ScheduleMonitor()
-            success, changed = monitor.run_once()
-            print(f"\n执行结果: {'成功' if success else '失败'} | 课表变化: {'是' if changed else '否'}")
-            # 输出标记供外部脚本判断
-            print(f"::set-output name=success::{str(success).lower()}")
-            print(f"::set-output name=changed::{str(changed).lower()}")
-            sys.exit(0 if success else 1)
+            try:
+                # 清空历史基线
+                if os.path.exists(LAST_HASH_FILE):
+                    os.remove(LAST_HASH_FILE)
+                if os.path.exists(LAST_SCHEDULE_FILE):
+                    os.remove(LAST_SCHEDULE_FILE)
+                monitor = ScheduleMonitor()
+                success, changed = monitor.run_once()
+                print(f"\n执行结果: {'成功' if success else '失败'} | 课表变化: {'是' if changed else '否'}")
+                # 输出标记供外部脚本判断
+                print(f"::set-output name=success::{str(success).lower()}")
+                print(f"::set-output name=changed::{str(changed).lower()}")
+                
+                if not success:
+                    monitor.send_error_notification("课表检查执行失败，请查看日志详情")
+                    
+                sys.exit(0 if success else 1)
+            except Exception as e:
+                error_msg = f"程序运行发生异常: {str(e)}"
+                tb = traceback.format_exc()
+                logger.error(error_msg)
+                logger.error(tb)
+                try:
+                    monitor = ScheduleMonitor()
+                    monitor.send_error_notification(error_msg, tb)
+                except:
+                    pass
+                sys.exit(1)
 
     # 正常执行一次检查（默认模式，供 cron-job 调用）
     if not check_required_env():
+        # 发送环境变量缺失错误通知
+        try:
+            monitor = ScheduleMonitor()
+            monitor.send_error_notification("环境变量配置缺失，请检查必填参数是否正确设置")
+        except:
+            pass
         sys.exit(1)
 
-    monitor = ScheduleMonitor()
-    success, changed = monitor.run_once()
+    try:
+        monitor = ScheduleMonitor()
+        success, changed = monitor.run_once()
 
-    print(f"\n执行结果: {'成功' if success else '失败'} | 课表变化: {'是' if changed else '否'}")
-    # 输出 GitHub Actions 可用的 output
-    print(f"::set-output name=success::{str(success).lower()}")
-    print(f"::set-output name=changed::{str(changed).lower()}")
+        print(f"\n执行结果: {'成功' if success else '失败'} | 课表变化: {'是' if changed else '否'}")
+        # 输出 GitHub Actions 可用的 output
+        print(f"::set-output name=success::{str(success).lower()}")
+        print(f"::set-output name=changed::{str(changed).lower()}")
 
-    sys.exit(0 if success else 1)
+        if not success:
+            monitor.send_error_notification("课表检查执行失败：登录或获取课表异常，请检查网络或账号密码")
+            
+        sys.exit(0 if success else 1)
+        
+    except Exception as e:
+        error_msg = f"程序运行发生未捕获异常: {str(e)}"
+        tb = traceback.format_exc()
+        logger.error(error_msg)
+        logger.error(tb)
+        # 发送故障通知
+        try:
+            monitor = ScheduleMonitor()
+            monitor.send_error_notification(error_msg, tb)
+        except:
+            pass
+        sys.exit(1)
 
 
 if __name__ == '__main__':
