@@ -235,6 +235,98 @@ class ScheduleMonitor:
 
         return '\n'.join(schedule_text), course_list
 
+    def _course_key(self, course):
+        """生成课程唯一标识：星期+时间段+节次+课程名"""
+        return f"{course['day']}|{course['time']}"
+
+    def _course_detail_key(self, course):
+        """生成课程完整信息key用于判断是否修改"""
+        return f"{self._course_key(course)}|{course['course_name']}|{course['teacher']}|{course['location']}"
+
+    def diff_schedules(self, old_courses, new_courses):
+        """对比新旧课表，返回变化部分：新增、删除、修改的课程"""
+        # 构建字典方便查找
+        old_dict = {self._course_key(c): c for c in old_courses}
+        new_dict = {self._course_key(c): c for c in new_courses}
+        
+        added = []    # 新增课程
+        removed = []  # 删除课程
+        modified = [] # 修改的课程
+
+        # 检查新增和修改
+        for key, new_course in new_dict.items():
+            if key not in old_dict:
+                added.append(new_course)
+            else:
+                old_course = old_dict[key]
+                if self._course_detail_key(new_course) != self._course_detail_key(old_course):
+                    modified.append((old_course, new_course))
+        
+        # 检查删除
+        for key, old_course in old_dict.items():
+            if key not in new_dict:
+                removed.append(old_course)
+        
+        return added, removed, modified
+
+    def format_diff_message(self, added, removed, modified):
+        """格式化差异消息"""
+        diff_parts = []
+        
+        if added:
+            diff_parts.append("➕ 【新增课程】")
+            for c in added:
+                diff_parts.append(f"  📅 {c['day']} {c['period']}")
+                diff_parts.append(f"     📚 {c['course_name']}")
+                diff_parts.append(f"     👨‍🏫 {c['teacher']}")
+                diff_parts.append(f"     📍 {c['location']}")
+                diff_parts.append(f"     ⏰ {c['time']}")
+                diff_parts.append("")
+
+        if removed:
+            diff_parts.append("➖ 【取消课程】")
+            for c in removed:
+                diff_parts.append(f"  📅 {c['day']} {c['period']}")
+                diff_parts.append(f"     📚 {c['course_name']}")
+                diff_parts.append(f"     👨‍🏫 {c['teacher']}")
+                diff_parts.append(f"     📍 {c['location']}")
+                diff_parts.append(f"     ⏰ {c['time']}")
+                diff_parts.append("")
+
+        if modified:
+            diff_parts.append("✏️ 【调整课程】")
+            for old_c, new_c in modified:
+                diff_parts.append(f"  📅 {new_c['day']} {new_c['period']}")
+                diff_parts.append(f"     ⏰ {new_c['time']}")
+                # 显示具体哪些字段变了
+                if old_c['course_name'] != new_c['course_name']:
+                    diff_parts.append(f"     📚 课程：{old_c['course_name']} → {new_c['course_name']}")
+                else:
+                    diff_parts.append(f"     📚 课程：{new_c['course_name']}")
+                if old_c['teacher'] != new_c['teacher']:
+                    diff_parts.append(f"     👨‍🏫 教师：{old_c['teacher']} → {new_c['teacher']}")
+                else:
+                    diff_parts.append(f"     👨‍🏫 教师：{new_c['teacher']}")
+                if old_c['location'] != new_c['location']:
+                    diff_parts.append(f"     📍 教室：{old_c['location']} → {new_c['location']}")
+                else:
+                    diff_parts.append(f"     📍 教室：{new_c['location']}")
+                diff_parts.append("")
+
+        return '\n'.join(diff_parts) if diff_parts else "（无具体变化详情）"
+
+    def load_last_courses(self):
+        """加载上次保存的课程列表"""
+        try:
+            if os.path.exists(LAST_SCHEDULE_FILE):
+                with open(LAST_SCHEDULE_FILE, 'r', encoding='utf-8') as f:
+                    last_data = json.load(f)
+                _, last_courses = self.parse_schedule(last_data)
+                return last_courses
+        except Exception as e:
+            logger.warning(f"加载上次课程列表失败: {str(e)}")
+        return None
+
     def _parse_course_dto(self, dto, day_name, period_name):
         """解析单个课程DTO"""
         course = {
@@ -444,15 +536,27 @@ class ScheduleMonitor:
         # 6. 课表有变化，发送通知
         logger.info("检测到课表变化！")
         schedule_text, course_list = self.parse_schedule(schedule_data)
+        last_courses = self.load_last_courses()
+        
+        # 对比差异
+        if last_courses:
+            added, removed, modified = self.diff_schedules(last_courses, course_list)
+            diff_text = self.format_diff_message(added, removed, modified)
+            change_count = len(added) + len(removed) + len(modified)
+            logger.info(f"共发现 {change_count} 处变化: 新增{len(added)}门, 删除{len(removed)}门, 调整{len(modified)}门")
+            logger.info(f"变化详情:\n{diff_text}")
+        else:
+            diff_text = "（无法加载上次课表基线，无法对比详细变化）"
+            change_count = 0
 
-        # 构造通知消息
+        # 构造通知消息 - 仅发送变化部分
         notify_msg = f"""🔔【教务系统课表变更提醒】
 ⏰ 检测时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+🔄 共 {change_count} 处变化
 
-📋 最新课表信息:
-{schedule_text}
-
-⚠️ 请及时查看确认课程安排是否已调整!"""
+📋 变化详情:
+{diff_text}
+⚠️ 请及时查看确认课程安排调整!"""
 
         # 发送钉钉通知
         self.send_dingtalk_notification(notify_msg)
