@@ -601,7 +601,7 @@
         {
           "Dtos": [
             {
-              "LessonOccupyID": "234ba3b9-4cf8-4e52-8914-6d141bdd889d",
+              "LessonOccupyID": "f7b19d95-e856-47f2-a178-f3782caf35b9",
               "BeginLessonID": "9ed8098e-5142-4723-887c-47cf08b6c5b3",
               "LessonObjName": "2523101-02[81人]",
               "BZ": null,
@@ -624,11 +624,11 @@
                   "Key": "Room"
                 },
                 {
-                  "Name": "1-5,7-15周[5-6节]",
+                  "Name": "1-3,5,7-15周[5-6节]",
                   "Key": "Time"
                 }
               ],
-              "QueryType": 0,
+              "QueryType": 1,
               "SimpleInfo": null,
               "StationOnLine": null,
               "OnLineAdress": null,
@@ -770,6 +770,40 @@
                 }
               ],
               "QueryType": 0,
+              "SimpleInfo": null,
+              "StationOnLine": null,
+              "OnLineAdress": null,
+              "OnLineInfo": null
+            },
+            {
+              "LessonOccupyID": "e28aa25c-4dba-4c3f-82fa-b3c53e50315f",
+              "BeginLessonID": "9ed8098e-5142-4723-887c-47cf08b6c5b3",
+              "LessonObjName": "2523101-02[81人]",
+              "BZ": null,
+              "Classs": null,
+              "Content": [
+                {
+                  "ID": "b9f5e0c7-f4e9-442b-a998-96c9a029040f",
+                  "Name": "Python程序设计",
+                  "Key": "Lesson"
+                },
+                {
+                  "ID": "6F823D7D-716D-463B-BDCF-9CE7EF0EB15B",
+                  "Name": "胡丽娜",
+                  "Key": "Teacher"
+                },
+                {
+                  "ID": "7E22E2F1-3DD6-4FFD-AFA5-5C2B5F7F6B7F",
+                  "Name": "1号楼西教301[理论]",
+                  "ZBDZ": null,
+                  "Key": "Room"
+                },
+                {
+                  "Name": "16周[7-8节]",
+                  "Key": "Time"
+                }
+              ],
+              "QueryType": 1,
               "SimpleInfo": null,
               "StationOnLine": null,
               "OnLineAdress": null,
