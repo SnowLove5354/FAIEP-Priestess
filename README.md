@@ -28,8 +28,8 @@
 
 | 变量名 | 必需 | 说明 | 示例 |
 |--------|------|------|------|
-| `STU_USERNAME` | ✅ | 教务系统账号 | `252310260` |
-| `STU_PASSWORD` | ✅ | 教务系统密码 | `15943476796xcaX.` |
+| `STU_USERNAME` | ✅ | 教务系统账号 | `` |
+| `STU_PASSWORD` | ✅ | 教务系统密码 | `` |
 | `STU_BASE_URL` | ❌ | 教务系统地址（默认已配置） | `https://stu2.changdian2001.com` |
 | `DINGTALK_WEBHOOK` | ✅ | 钉钉机器人 Webhook 地址 | `https://oapi.dingtalk.com/robot/send?access_token=xxx` |
 | `DINGTALK_SECRET` | ❌ | 钉钉机器人加签密钥（选"加签"安全时配置） | `SECxxxxxx` |
@@ -53,15 +53,15 @@ pip install -r requirements.txt
 
 **Windows (PowerShell):**
 ```powershell
-$env:STU_USERNAME = "252310260"
-$env:STU_PASSWORD = "15943476796xcaX."
+$env:STU_USERNAME = ""
+$env:STU_PASSWORD = ""
 $env:DINGTALK_WEBHOOK = "https://oapi.dingtalk.com/robot/send?access_token=你的token"
 ```
 
 **Linux / macOS:**
 ```bash
-export STU_USERNAME="252310260"
-export STU_PASSWORD="15943476796xcaX."
+export STU_USERNAME=""
+export STU_PASSWORD=""
 export DINGTALK_WEBHOOK="https://oapi.dingtalk.com/robot/send?access_token=你的token"
 ```
 
@@ -116,8 +116,8 @@ crontab -e
 
 | Secret 名称 | 值 |
 |-------------|-----|
-| `STU_USERNAME` | `252310260` |
-| `STU_PASSWORD` | `15943476796xcaX.` |
+| `STU_USERNAME` | `` |
+| `STU_PASSWORD` | `` |
 | `DINGTALK_WEBHOOK` | 你的钉钉机器人 Webhook 完整地址 |
 
 （可选，按需添加）：
