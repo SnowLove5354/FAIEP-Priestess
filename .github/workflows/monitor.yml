@@ -1,0 +1,53 @@
+name: Schedule Monitor
+
+# ⚠️ 本工作流不使用 GitHub 自带的 schedule 定时器
+# 完全由外部 cron-job 服务通过 workflow_dispatch API 调用触发
+on:
+  workflow_dispatch:  # 仅支持外部触发（cron-job / 手动）
+    inputs:
+      reason:
+        description: '触发原因'
+        required: false
+        default: 'scheduled'
+        type: string
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # 允许提交状态文件以持久化
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run schedule monitor
+        env:
+          STU_USERNAME: ${{ secrets.STU_USERNAME }}
+          STU_PASSWORD: ${{ secrets.STU_PASSWORD }}
+          STU_BASE_URL: ${{ secrets.STU_BASE_URL }}
+          DINGTALK_WEBHOOK: ${{ secrets.DINGTALK_WEBHOOK }}
+          DINGTALK_SECRET: ${{ secrets.DINGTALK_SECRET }}
+          DINGTALK_AT_MOBILES: ${{ secrets.DINGTALK_AT_MOBILES }}
+          DINGTALK_AT_ALL: ${{ secrets.DINGTALK_AT_ALL }}
+          LOG_LEVEL: INFO
+        run: python schedule_monitor.py
+        id: monitor_run
+
+      - name: Commit and push state updates
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -f last_hash.txt last_schedule.json
+          git diff --staged --quiet || git commit -m "Update schedule state - $(date +'%Y-%m-%d %H:%M:%S') [skip ci]"
+          git push || echo "Push failed, will retry next run"
