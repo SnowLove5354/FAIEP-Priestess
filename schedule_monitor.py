@@ -134,7 +134,7 @@ class ScheduleMonitor:
         """登录教务系统"""
         try:
             # 先访问登录页获取session
-            self.session.get(f'{BASE_URL}/Login', timeout=10)
+            self.session.get(f'{BASE_URL}/Login', timeout=(5, 25))
 
             # 构造登录请求
             login_data = {
@@ -152,7 +152,7 @@ class ScheduleMonitor:
             response = self.session.post(
                 f'{BASE_URL}/api/LoginApi/LocalLogin',
                 json=payload,
-                timeout=10
+                timeout=(5, 25)
             )
             result = response.json()
 
@@ -166,10 +166,136 @@ class ScheduleMonitor:
             logger.error(f"登录异常: {str(e)}")
             return False
 
-    def get_schedule(self):
-        """获取当前课表数据"""
+    def check_refresh_button(self):
+        """扫描页面状态，检测是否显示刷新按钮
+        
+        刷新按钮显示条件（与前端JS逻辑一致）：
+        当在线选课/重修申请/实验预约任一项处于进行中时，页面会显示刷新按钮
+        按钮文字：刷新，图标：el-icon-refresh
+        点击后会重新拉取最新课表数据
+        """
         try:
-            schedule_data = {'XQJC': ''}
+            # 调用首页接口获取进行中事项 SJXS
+            home_payload = {
+                'param': encode_param({}),
+                '__permission': {
+                    'MenuID': '00000000-0000-0000-0000-000000000000',
+                    'Operate': 'select',
+                    'Operation': 0
+                },
+                '__log': {
+                    'MenuID': '00000000-0000-0000-0000-000000000000',
+                    'Logtype': 6,
+                    'Context': '查询'
+                }
+            }
+            response = self.session.post(
+                f'{BASE_URL}/api/ClientStudent/Home/StudentHomeApi/GetStudentHome',
+                json=home_payload,
+                timeout=(5, 25)
+            )
+            result = response.json()
+
+            if result.get('state') != 0:
+                logger.warning(f"获取首页状态失败: {result.get('message', '未知错误')}")
+                return False, []
+
+            sjxs = result.get('data', {}).get('SJXS', [])
+            running_items = []
+            # 与前端逻辑一致：在线选课、重修申请、实验预约 任一进行中即显示刷新按钮
+            for item in sjxs:
+                menu_name = item.get('MenuName', '')
+                is_running = item.get('IsRunning', False)
+                if is_running and menu_name in ['在线选课', '重修申请', '实验预约']:
+                    start_date = item.get('StartDate', '')
+                    end_date = item.get('EndDate', '')
+                    running_items.append({
+                        'name': menu_name,
+                        'start': start_date,
+                        'end': end_date
+                    })
+
+            refresh_visible = len(running_items) > 0
+            if refresh_visible:
+                items_str = ', '.join([f"{i['name']}({i['start']}~{i['end']})" for i in running_items])
+                logger.info(f"检测到页面显示刷新按钮，进行中事项: {items_str}")
+            else:
+                logger.info("页面未显示刷新按钮（无正在进行的选课相关事项）")
+
+            return refresh_visible, running_items
+        except Exception as e:
+            logger.warning(f"检测刷新按钮状态异常: {str(e)}，将跳过自动刷新")
+            return False, []
+
+    def trigger_refresh_schedule(self):
+        """模拟点击刷新按钮，重新拉取最新课表
+        
+        对应前端 handleReloadSchedule 方法：
+        1. 调用 GetSchoolShortName 获取学期/校区信息
+        2. 调用 QueryStudentScheduleData 获取最新课表
+        3. 调用 QueryStudentPracticeData 获取最新实践课数据
+        """
+        try:
+            logger.info("正在自动刷新课表数据...")
+
+            # 步骤1：获取学校学期/校区信息
+            xqjc = ''
+            try:
+                r = self.session.post(
+                    f'{BASE_URL}/api/PublicQueryApi/GetSchoolShortName',
+                    json={'action': 'select', 'data': {}},
+                    timeout=(5, 25)
+                )
+                school_result = r.json()
+                school_data = school_result.get('data', {}) or {}
+                if school_data.get('SFQYXQJC'):
+                    xqjc = school_data.get('MRXQ', '') or (school_data.get('XQJCS') or [''])[0]
+                    logger.info(f"启用校区选择，当前校区: {xqjc}")
+                else:
+                    logger.info("未启用校区选择，使用默认")
+            except Exception as e:
+                logger.warning(f"获取学校信息失败，使用默认校区: {str(e)}")
+
+            # 步骤2：重新拉取课表数据（这是刷新的核心，相当于强制更新缓存）
+            schedule_data = self._fetch_schedule_raw(xqjc)
+            if not schedule_data:
+                logger.error("刷新后获取课表失败")
+                return None
+
+            # 步骤3：拉取实践课数据（前端会一并刷新，这里也调用以确保数据最新）
+            try:
+                practice_payload = {
+                    'param': encode_param({}),
+                    '__permission': {
+                        'MenuID': '00000000-0000-0000-0000-000000000000',
+                        'Operate': 'select',
+                        'Operation': 0
+                    },
+                    '__log': {
+                        'MenuID': '00000000-0000-0000-0000-000000000000',
+                        'Logtype': 6,
+                        'Context': '查询'
+                    }
+                }
+                self.session.post(
+                    f'{BASE_URL}/api/ClientStudent/Home/StudentHomeApi/QueryStudentPracticeData',
+                    json=practice_payload,
+                    timeout=(5, 25)
+                )
+                logger.info("实践课数据已刷新")
+            except Exception as e:
+                logger.warning(f"刷新实践课数据失败（不影响主课表）: {str(e)}")
+
+            logger.info("课表数据刷新完成，已获取最新数据")
+            return schedule_data
+        except Exception as e:
+            logger.error(f"自动刷新课表异常: {str(e)}")
+            return None
+
+    def _fetch_schedule_raw(self, xqjc=''):
+        """底层课表获取（供内部调用）"""
+        try:
+            schedule_data = {'XQJC': xqjc}
             payload = {
                 'param': encode_param(schedule_data),
                 '__permission': {
@@ -187,7 +313,7 @@ class ScheduleMonitor:
             response = self.session.post(
                 f'{BASE_URL}/api/ClientStudent/Home/StudentHomeApi/QueryStudentScheduleData',
                 json=payload,
-                timeout=10
+                timeout=(5, 25)
             )
             result = response.json()
 
@@ -199,6 +325,23 @@ class ScheduleMonitor:
         except Exception as e:
             logger.error(f"获取课表异常: {str(e)}")
             return None
+
+    def get_schedule(self):
+        """获取当前课表数据
+        流程：登录后先检测页面是否有刷新按钮，有则自动刷新课表再获取；无则直接获取
+        """
+        # 1. 扫描页面，检测是否有刷新按钮
+        refresh_visible, running_items = self.check_refresh_button()
+
+        # 2. 如果显示刷新按钮，自动点击刷新获取最新课表
+        if refresh_visible:
+            schedule_data = self.trigger_refresh_schedule()
+            if schedule_data:
+                return schedule_data
+            logger.warning("自动刷新失败，尝试直接获取课表...")
+
+        # 3. 无刷新按钮或刷新失败，直接获取课表
+        return self._fetch_schedule_raw('')
 
     def parse_schedule(self, data):
         """解析课表数据为易读格式"""
