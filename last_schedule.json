@@ -698,7 +698,42 @@
       "MN__TimePieces": [],
       "AM__TimePieces": [
         {
-          "Dtos": [],
+          "Dtos": [
+            {
+              "LessonOccupyID": "30068862-90f5-44c8-b47c-4c06d5db7108",
+              "BeginLessonID": "eaf36194-d8db-41d4-b4f9-867174165c87",
+              "LessonObjName": "2523101-02[81人]",
+              "BZ": null,
+              "Classs": null,
+              "Content": [
+                {
+                  "ID": "a5832a95-ef89-4154-94f4-4fa08719555c",
+                  "Name": "计算机系统结构",
+                  "Key": "Lesson"
+                },
+                {
+                  "ID": "83928388-f11d-4db5-9cd5-f8e954f6e935",
+                  "Name": "付帅",
+                  "Key": "Teacher"
+                },
+                {
+                  "ID": "61CCF4EC-4706-4CC1-AC92-FE1BFF16D79F",
+                  "Name": "1号楼西教501[理论]",
+                  "ZBDZ": null,
+                  "Key": "Room"
+                },
+                {
+                  "Name": "4周[1-2节]",
+                  "Key": "Time"
+                }
+              ],
+              "QueryType": 1,
+              "SimpleInfo": null,
+              "StationOnLine": null,
+              "OnLineAdress": null,
+              "OnLineInfo": null
+            }
+          ],
           "IsTimeConflit": false,
           "XQJC": null,
           "StartTime": "08:30",
@@ -711,7 +746,42 @@
           "SectionList": null
         },
         {
-          "Dtos": [],
+          "Dtos": [
+            {
+              "LessonOccupyID": "03812190-efa6-4804-b91c-328a75d23bb3",
+              "BeginLessonID": "eaf36194-d8db-41d4-b4f9-867174165c87",
+              "LessonObjName": "2523101-02[81人]",
+              "BZ": null,
+              "Classs": null,
+              "Content": [
+                {
+                  "ID": "a5832a95-ef89-4154-94f4-4fa08719555c",
+                  "Name": "计算机系统结构",
+                  "Key": "Lesson"
+                },
+                {
+                  "ID": "83928388-f11d-4db5-9cd5-f8e954f6e935",
+                  "Name": "付帅",
+                  "Key": "Teacher"
+                },
+                {
+                  "ID": "61CCF4EC-4706-4CC1-AC92-FE1BFF16D79F",
+                  "Name": "1号楼西教501[理论]",
+                  "ZBDZ": null,
+                  "Key": "Room"
+                },
+                {
+                  "Name": "4周[3-4节]",
+                  "Key": "Time"
+                }
+              ],
+              "QueryType": 1,
+              "SimpleInfo": null,
+              "StationOnLine": null,
+              "OnLineAdress": null,
+              "OnLineInfo": null
+            }
+          ],
           "IsTimeConflit": false,
           "XQJC": null,
           "StartTime": "10:15",
@@ -862,7 +932,7 @@
         {
           "Dtos": [
             {
-              "LessonOccupyID": "42986a2a-fbbc-4550-a6cd-d78307f751a1",
+              "LessonOccupyID": "c0919ef7-3cd0-4f7c-ad3a-5eb54e761660",
               "BeginLessonID": "eaf36194-d8db-41d4-b4f9-867174165c87",
               "LessonObjName": "2523101-02[81人]",
               "BZ": null,
@@ -885,11 +955,11 @@
                   "Key": "Room"
                 },
                 {
-                  "Name": "1-5,7-15周[1-2节]",
+                  "Name": "1-3,5,7-15周[1-2节]",
                   "Key": "Time"
                 }
               ],
-              "QueryType": 0,
+              "QueryType": 1,
               "SimpleInfo": null,
               "StationOnLine": null,
               "OnLineAdress": null,
@@ -910,7 +980,7 @@
         {
           "Dtos": [
             {
-              "LessonOccupyID": "24d5ea06-eac2-4799-92d7-56bbbbd3950a",
+              "LessonOccupyID": "ad584889-3dec-4c47-b99e-55cc84bca9e7",
               "BeginLessonID": "eaf36194-d8db-41d4-b4f9-867174165c87",
               "LessonObjName": "2523101-02[81人]",
               "BZ": null,
@@ -933,11 +1003,11 @@
                   "Key": "Room"
                 },
                 {
-                  "Name": "1-5,7-15周[3-4节]",
+                  "Name": "1-3,5,7-15周[3-4节]",
                   "Key": "Time"
                 }
               ],
-              "QueryType": 0,
+              "QueryType": 1,
               "SimpleInfo": null,
               "StationOnLine": null,
               "OnLineAdress": null,
